@@ -1,0 +1,8 @@
+name: echo
+on: [push]
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hoge"
+      - run: echo $GITHUB_SHA
