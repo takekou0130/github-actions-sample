@@ -6,3 +6,4 @@ jobs:
     steps:
       - run: echo "hoge"
       - run: echo $GITHUB_SHA
+      - if: ${{ !always() }}
