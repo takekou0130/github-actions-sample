@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"database/sql"
+	"fmt"
 
 	"github.com/takekou0130/github-actions-sample/myapi/models"
 )
@@ -38,6 +39,7 @@ func SelectArticleList(db *sql.DB, page int) ([]models.Article, error) {
 	const numPerPage = 5
 	rows, err := db.Query(sqlStr, numPerPage, (page-1)*numPerPage)
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	defer rows.Close()
@@ -47,6 +49,7 @@ func SelectArticleList(db *sql.DB, page int) ([]models.Article, error) {
 		var article models.Article
 		err := rows.Scan(&article.ID, &article.Title, &article.Contents, &article.UserName, &article.NiceNum)
 		if err != nil {
+			fmt.Println(err)
 			return nil, err
 		}
 
