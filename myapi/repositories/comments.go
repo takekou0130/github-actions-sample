@@ -39,7 +39,7 @@ func SelectCommentList(db *sql.DB, articleID int) ([]models.Comment, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer db.Close()
+	defer rows.Close()
 
 	commentArray := make([]models.Comment, 0)
 	for rows.Next() {
