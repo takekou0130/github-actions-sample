@@ -1,9 +1,7 @@
 name: hoge
 
 on:
-  pull_request:
-    types:
-      - edited
+  - push
 jobs:
   git-get:
     timeout-minutes: 1
