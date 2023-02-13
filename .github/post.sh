@@ -2,7 +2,7 @@ payload()
 {
 cat <<EOF
 {
-  "body": "hoge"
+  "body": "$MESSAGE"
 }
 EOF
 }
