@@ -22,9 +22,9 @@ jobs:
     needs: git-get
     steps:
       - uses: actions/checkout@v3
-      - name: echo data
-        run: echo ${{ needs.git-get.outputs.protect }}
       - name: json stringify
         env:
-          MESSAGE: "ブランチプロテクションの有効化に失敗しました(release) \nProtect: ${{ toJson(${{ toJson(needs.git-get.outputs.protect) }} ) }}"
-        run: bash .github/post.sh
+          MESSAGE: "ブランチプロテクションの有効化に失敗しました(release) \nProtect: jobを確認してください"
+        run: |
+          echo ${{ needs.git-get.outputs.protect }}
+          bash .github/post.sh
