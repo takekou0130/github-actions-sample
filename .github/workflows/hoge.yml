@@ -2,6 +2,8 @@ name: hoge
 
 on:
   - push
+env:
+  GTHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   git-get:
     timeout-minutes: 1
