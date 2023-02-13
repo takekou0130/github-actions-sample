@@ -26,5 +26,5 @@ jobs:
         env:
           MESSAGE: "ブランチプロテクションの有効化に失敗しました(release)\\nProtect:"
         run: |
-          echo ${{ needs.git-get.outputs.protect }}
+          echo request body : ${{ needs.git-get.outputs.protect }}
           bash .github/post.sh
