@@ -2,7 +2,7 @@ payload()
 {
 cat <<EOF
 {
-  "text": "$MESSAGE"
+  "body": "$MESSAGE"
 }
 EOF
 }
