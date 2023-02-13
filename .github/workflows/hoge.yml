@@ -26,5 +26,5 @@ jobs:
         run: echo ${{ needs.git-get.outputs.protect }}
       - name: json stringify
         env:
-          MESSAGE: "ブランチプロテクションの有効化に失敗しました(release) \nProtect: ${{ toJson(needs.git-get.outputs.protect) }}"
+          MESSAGE: "ブランチプロテクションの有効化に失敗しました(release) \nProtect: ${{ format('{0}', needs.git-get.outputs.protect) }}"
         run: bash .github/post.sh
