@@ -1,10 +1,10 @@
 payload()
 {
-cat <<EOF
+cat <<EOS
 {
   "text": "$MESSAGE"
 }
-EOF
+EOS
 }
 
 response=$(curl -s -H "Accept: application/vnd.github+json" \
