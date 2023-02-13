@@ -1,0 +1,26 @@
+name: hoge
+
+on:
+  pull_request:
+    types:
+      - edited
+jobs:
+  git-get:
+    timeout-minutes: 1
+    runs-on: ubuntu-latest
+    outputs:
+      protect: ${{ steps.get-data.outputs.protect }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: get
+        id: get-data
+        run: echo "protect=$(bash .github/get.sh)" >> $GITHUB_OUTPUT
+
+  git-echo:
+    timeout-minutes: 1
+    runs-on: ubuntu-latest
+    needs: git-get
+    steps:
+      - uses: actions/checkout@v3
+      - name: echo data
+        run: echo ${{ needs.git-get.outputs.protection }}
