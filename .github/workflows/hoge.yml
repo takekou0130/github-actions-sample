@@ -13,16 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: event
-        env:
-          HOGE: ${{ github.push.after }}
         run: |
-          echo $HOGE
-          echo ${{ github.push.base_ref }}
-          echo ${{ github.push.before }}
-          echo ${{ github.push.commits }}
-          echo ${{ github.push.compare }}
-          echo ${{ github.push.event }}
-          echo ${{ github.push.sha }}
+          hoge=$(echo ${{ github }} | jq -r '.' )
+          echo $hoge
+
   git-get:
     timeout-minutes: 1
     runs-on: ubuntu-latest
