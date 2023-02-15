@@ -1,0 +1,43 @@
+name: hoge
+
+on:
+  push:
+    branches:
+      - feature/test
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  git-event:
+    timeout-minutes: 1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: event
+        run: |
+          echo ${{ toJson(github.context) }}
+          echo ${{ toJson(github.context.payload) }}
+          echo ${{ toJson(github.context.payload.ref) }}
+
+  git-get:
+    timeout-minutes: 1
+    runs-on: ubuntu-latest
+    outputs:
+      protect: ${{ steps.get-data.outputs.protect }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: get
+        id: get-data
+        run: echo "protect=$(bash .github/get.sh)" >> $GITHUB_OUTPUT
+
+  git-echo:
+    timeout-minutes: 1
+    runs-on: ubuntu-latest
+    needs: git-get
+    steps:
+      - uses: actions/checkout@v3
+      - name: json stringify
+        env:
+          MESSAGE: "ブランチプロテクションの有効化に失敗しました(release)\\nProtect:"
+        run: |
+          echo request body : ${{ needs.git-get.outputs.protect }}
+          bash .github/post.sh
