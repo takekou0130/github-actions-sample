@@ -13,8 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: event
+        env:
+          HOGE: ${{ github.event.push.after }}
         run: |
-          echo ${{ github.event.push.after }}
+          echo $HOGE
           echo ${{ github.event.push.base_ref }}
           echo ${{ github.event.push.before }}
           echo ${{ github.event.push.commits }}
