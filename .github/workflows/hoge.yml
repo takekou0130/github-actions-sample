@@ -13,7 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: event
-        run: echo ${{ github.event }}
+        run: |
+          echo ${{ github.event.push.after }}
+          echo ${{ github.event.push.base_ref }}
+          echo ${{ github.event.push.before }}
+          echo ${{ github.event.push.commits }}
+          echo ${{ github.event.push.compare }}
   git-get:
     timeout-minutes: 1
     runs-on: ubuntu-latest
