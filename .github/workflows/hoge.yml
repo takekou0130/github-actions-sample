@@ -14,15 +14,15 @@ jobs:
       - uses: actions/checkout@v3
       - name: event
         env:
-          HOGE: ${{ github.event.push.after }}
+          HOGE: ${{ github.push.after }}
         run: |
           echo $HOGE
-          FUGA=aaao
-          echo $FUGA
-          echo ${{ github.event.push.base_ref }}
-          echo ${{ github.event.push.before }}
-          echo ${{ github.event.push.commits }}
-          echo ${{ github.event.push.compare }}
+          echo ${{ github.push.base_ref }}
+          echo ${{ github.push.before }}
+          echo ${{ github.push.commits }}
+          echo ${{ github.push.compare }}
+          echo ${{ github.push.event }}
+          echo ${{ github.push.sha }}
   git-get:
     timeout-minutes: 1
     runs-on: ubuntu-latest
