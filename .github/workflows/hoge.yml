@@ -17,6 +17,8 @@ jobs:
           HOGE: ${{ github.event.push.after }}
         run: |
           echo $HOGE
+          FUGA=aaao
+          echo $FUGA
           echo ${{ github.event.push.base_ref }}
           echo ${{ github.event.push.before }}
           echo ${{ github.event.push.commits }}
