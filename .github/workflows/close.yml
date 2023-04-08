@@ -1,0 +1,30 @@
+name: Confirm Close
+on: 
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+
+jobs:
+  confirm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: echo base
+        run: echo $GITHUB_BASE_REF
+
+      - name: echo head
+        run: echo $GITHUB_HEAD_REF
+
+      - name: echo val base
+        run: echo $VAL
+        env:
+          VAL: ${{ github.event.pull_request.base.ref }}
+
+      - name: echo val head
+        run: echo $VAL
+        env:
+          VAL: ${{ github.event.pull_request.head.ref }}
